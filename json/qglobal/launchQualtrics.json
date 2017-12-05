@@ -1,0 +1,14 @@
+{
+  "launchQualtrics": {
+    "credentials": {
+      "user2": "osauser2",
+      "password2": "Password1",
+      "user": "alonso05",
+      "password": "Password1"
+    },
+    "testData": {
+      "examinee": "QLJosé",
+      "assesment": "BAI"
+    }
+  }
+}

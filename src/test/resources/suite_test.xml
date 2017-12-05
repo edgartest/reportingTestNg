@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="test_suite" parallel="methods" thread-count="6" verbose="2" allow-return-values="true" configfailurepolicy="continue">
+    <test name="test_Alonso" preserve-order="true">
+        <groups>
+            <run>
+                <include name="testStartup" /> 
+            </run>
+        </groups>
+        <classes>
+            <class name="com.pearson.test.qualtrics.Startup" />
+            <class name="com.pearson.test.qualtrics.Startup2" />
+            <class name="com.pearson.test.qualtrics.Startup3" />
+            <class name="com.pearson.test.qualtrics.Startup4" />
+        </classes>
+    </test>
+</suite>
