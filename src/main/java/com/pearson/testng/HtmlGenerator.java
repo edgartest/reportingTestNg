@@ -4,6 +4,8 @@ import com.pearson.common.Log;
 import com.pearson.common.enums.CommonConstants;
 import com.pearson.common.enums.Locale;
 import com.pearson.common.enums.Node;
+import com.pearson.testng.HtmlGenerator.LogFile.Type;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -467,30 +469,28 @@ public class HtmlGenerator extends TestResultPruner {
             return this.files;
         }
 
-        public Map<HtmlGenerator.LogFile.Type, TreeMap<String, HtmlGenerator.LogFile>> getSortedMap() {
-            Map<HtmlGenerator.LogFile.Type, TreeMap<String, HtmlGenerator.LogFile>> map = new TreeMap();
-            HtmlGenerator.LogFile.Type[] var5;
-            int var4 = (var5 = HtmlGenerator.LogFile.Type.values()).length;
+        public Map<Type, TreeMap<String, LogFile>> getSortedMap() {
 
-            for(int var3 = 0; var3 < var4; ++var3) {
-                HtmlGenerator.LogFile.Type type = var5[var3];
-                map.put(type, new TreeMap());
+            Map<Type, TreeMap<String, LogFile>> map = new TreeMap<Type, TreeMap<String, LogFile> >();
+
+            for(Type type : Type.values()) {
+                map.put(type, new TreeMap<String, HtmlGenerator.LogFile>());
             }
 
-            Iterator var7 = this.files.iterator();
-
-            while(var7.hasNext()) {
-                HtmlGenerator.LogFile file = (HtmlGenerator.LogFile)var7.next();
-                switch($SWITCH_TABLE$com$pearson$testng$HtmlGenerator$LogFile$Type()[file.getType().ordinal()]) {
-                case 2:
-                    ((TreeMap)map.get(HtmlGenerator.LogFile.Type.LOG_FILE)).put(file.getFile().getName(), file);
-                    break;
-                case 3:
-                    ((TreeMap)map.get(HtmlGenerator.LogFile.Type.LOG_ERROR)).put(file.getFile().getName(), file);
-                    break;
-                case 4:
-                default:
-                    ((TreeMap)map.get(HtmlGenerator.LogFile.Type.PNG_IMAGE)).put(file.getFile().getName(), file);
+            for (LogFile file : files) {
+                switch(file.getType()) {
+                    case LOG_FILE:
+                        map.get(Type.LOG_FILE).put(file.getFile().getName(), file);
+                        break;
+                    case LOG_ERROR:
+                        map.get(Type.LOG_ERROR).put(file.getFile().getName(), file);
+                        break;
+                    // Note that everything else will be categorized under  
+                    // PNG_IMAGE so that it'll get grouped and sorted together.
+                    case PNG_IMAGE:
+                    default:
+                        map.get(Type.PNG_IMAGE).put(file.getFile().getName(), file);
+                        break;
                 }
             }
 

@@ -29,7 +29,9 @@ public enum CommonConstants {
 	PAGE_TIMEOUT(Constants.PAGE_TIMEOUT),
 	TEST_ENVIRONMENT(Constants.TEST_ENVIRONMENT),
 	SELENIUM_GRID(Constants.SELENIUM_GRID),
-	SELENIUM_GECKO(Constants.SELENIUM_GECKO);
+	SELENIUM_GECKO(Constants.SELENIUM_GECKO),
+	JSON_PATH(Constants.JSON_PATH),
+	PROJECT(Constants.PROJECT);
 	
 	private final String value;
 	
@@ -67,6 +69,8 @@ public enum CommonConstants {
 		public static final String TEST_ENVIRONMENT = Environment.getName();
 		public static final String SELENIUM_GRID = String.valueOf(Boolean.getBoolean(SELENIUM_GRID_PROPERTY));
 		public static final String SELENIUM_GECKO = String.valueOf(Boolean.getBoolean(SELENIUM_GECKO_DRIVER_PROPERTY));
+		public static final String JSON_PATH = "json";
+		public static final String PROJECT = "QG";
 	}
 	
     /**
