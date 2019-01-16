@@ -1,13 +1,13 @@
 package com.pearson.qglobal.pageobject;
 
-import com.pearson.common.Log;
-import com.pearson.common.XPath;
-import com.pearson.common.enums.QGUrl;
-import com.pearson.qglobal.common.factory.PageFactory;
-import com.pearson.qglobal.common.pageobject.QGPageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import com.pearson.common.Log;
+import com.pearson.common.XPath;
+import com.pearson.common.enums.QGUrl;
+import com.pearson.qglobal.common.pageobject.QGPageObject;
 
 public class LogIn extends QGPageObject {
     static final QGUrl URL;
@@ -58,6 +58,6 @@ public class LogIn extends QGPageObject {
         this.userNameElement.sendKeys(new CharSequence[]{userName});
         XPath.waitForVisibleElement(this.driver, this.passwordInput).sendKeys(new CharSequence[]{password});
         XPath.waitForVisibleElement(this.driver, this.signInBtn).click();
-        return (SearchExaminee)PageFactory.getInstance(this.driver).create("search_examinee");
+        return null;
     }
 }

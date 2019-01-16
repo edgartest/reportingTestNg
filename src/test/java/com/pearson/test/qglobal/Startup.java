@@ -1,19 +1,18 @@
 package com.pearson.test.qglobal;
 
+import org.testng.annotations.Test;
+
 import com.pearson.common.Log;
 import com.pearson.common.Utils;
 import com.pearson.common.WebUITest;
-import com.pearson.qglobal.common.factory.PageFactory;
+import com.pearson.global.common.factory.PageFactory;
 import com.pearson.qglobal.factory.GenericRegistrar;
 import com.pearson.qglobal.pageobject.GroupAdministration;
 import com.pearson.qglobal.pageobject.LogIn;
 import com.pearson.qglobal.pageobject.SearchExaminee;
-import com.pearson.testng.HtmlGenerator;
 import com.pearson.testng.RetryAnalyzer;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
 
-@Listeners({HtmlGenerator.class})
+//@Listeners({HtmlGenerator.class})
 public class Startup extends WebUITest {
     public Startup() {
     }
@@ -25,8 +24,7 @@ public class Startup extends WebUITest {
     )
     public void pf001() throws Exception {
         try {
-            this.initialize((new Object() {
-            }).getClass(), PageFactory.class, GenericRegistrar.class);
+            this.initialize((new Object() {}).getClass(), PageFactory.class, GenericRegistrar.class);
             LogIn loginPage = (LogIn)PageFactory.getInstance(this.driver).create();
             loginPage.verifyLoginPage();
             Utils.captureScreenshot(this.driver);

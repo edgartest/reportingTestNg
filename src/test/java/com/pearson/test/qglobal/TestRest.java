@@ -1,5 +1,5 @@
 package com.pearson.test.qglobal;
-
+/*
 import com.pearson.api.restservices.AssignAssesmentRequestBuilder;
 import com.pearson.api.restservices.CreateExamineeRequestBuilder;
 import com.pearson.api.restservices.EnterItemResponsesRequestBuilder;
@@ -186,4 +186,4 @@ public class TestRest {
             }
         }
     }
-}
+}*/

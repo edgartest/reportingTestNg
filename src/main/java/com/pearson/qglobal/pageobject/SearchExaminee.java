@@ -1,13 +1,14 @@
 package com.pearson.qglobal.pageobject;
 
-import com.pearson.common.Utils;
-import com.pearson.common.XPath;
-import com.pearson.common.enums.QGUrl;
-import com.pearson.qglobal.common.factory.PageFactory;
-import com.pearson.qglobal.common.pageobject.QGPageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import com.pearson.common.Utils;
+import com.pearson.common.XPath;
+import com.pearson.common.enums.QGUrl;
+import com.pearson.global.common.factory.PageFactory;
+import com.pearson.qglobal.common.pageobject.QGPageObject;
 
 public class SearchExaminee extends QGPageObject {
     static final QGUrl URL;
@@ -43,7 +44,7 @@ public class SearchExaminee extends QGPageObject {
     }
 
     protected boolean isActiveSessionMessage() throws Exception {
-        String rawStyle = this.activeSessionWebElement.getAttribute("style");
+        String rawStyle = activeSessionWebElement.getAttribute("style");
         return rawStyle.isEmpty();
     }
 
@@ -52,13 +53,13 @@ public class SearchExaminee extends QGPageObject {
             XPath.find(this.driver, this.activeSessionOK).click();
         }
 
-        Utils.waitForSpinner(this.driver);
-        Utils.waitForGridLoad(this.driver);
+        Utils.waitForSpinner(driver);
+        Utils.waitForGridLoad(driver);
     }
 
     public GroupAdministration clickTabGroupAdm() throws Exception {
         this.GroupAdmnTab.click();
-        Utils.waitForSpinner(this.driver);
-        return (GroupAdministration)PageFactory.getInstance(this.driver).create("group_admin");
+        Utils.waitForSpinner(driver);
+        return PageFactory.getInstance(driver).create("group_admin");
     }
 }

@@ -1,11 +1,5 @@
 package com.pearson.testng;
 
-import com.pearson.common.Log;
-import com.pearson.common.enums.CommonConstants;
-import com.pearson.common.enums.Locale;
-import com.pearson.common.enums.Node;
-import com.pearson.testng.HtmlGenerator.LogFile.Type;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -24,12 +18,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
+
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.xml.XmlTest;
+
+import com.pearson.common.Log;
+import com.pearson.common.enums.CommonConstants;
+import com.pearson.common.enums.Locale;
+import com.pearson.common.enums.Node;
+import com.pearson.testng.HtmlGenerator.LogFile.Type;
 
 public class HtmlGenerator extends TestResultPruner {
     public static String LOGS_HTML_OUTPUT_FILENAME = "index.html";
@@ -609,14 +610,14 @@ public class HtmlGenerator extends TestResultPruner {
                             do {
                                 String line;
                                 if (!var43.hasNext()) {
-                                    int i = false;
+                                    int i = 0;
                                     Iterator var48 = ((TreeMap)map.get(type)).descendingMap().values().iterator();
 
-                                    HtmlGenerator.LogFile file;
+                                    HtmlGenerator.LogFile file1;
                                     while(var48.hasNext()) {
-                                        file = (HtmlGenerator.LogFile)var48.next();
-                                        if (!file.getType().equals(HtmlGenerator.LogFile.Type.PNG_EXCEPTION) && !file.getType().equals(HtmlGenerator.LogFile.Type.PNG_IMAGE) && !file.getType().equals(HtmlGenerator.LogFile.Type.PNG_SUCCESS)) {
-                                            file.toHtml2(buffer, this.getTestName(), -1);
+                                        file1 = (HtmlGenerator.LogFile)var48.next();
+                                        if (!file1.getType().equals(HtmlGenerator.LogFile.Type.PNG_EXCEPTION) && !file1.getType().equals(HtmlGenerator.LogFile.Type.PNG_IMAGE) && !file1.getType().equals(HtmlGenerator.LogFile.Type.PNG_SUCCESS)) {
+                                            file1.toHtml2(buffer, this.getTestName(), -1);
                                         }
                                     }
 
@@ -632,15 +633,15 @@ public class HtmlGenerator extends TestResultPruner {
                                                                 continue label214;
                                                             }
 
-                                                            file = (HtmlGenerator.LogFile)var48.next();
-                                                        } while(file.getType().equals(HtmlGenerator.LogFile.Type.PNG_EXCEPTION));
-                                                    } while(file.getType().equals(HtmlGenerator.LogFile.Type.PNG_IMAGE));
-                                                } while(file.getType().equals(HtmlGenerator.LogFile.Type.PNG_SUCCESS));
-                                            } while(file.getFile().getName().contains("error"));
-                                        } while(file.getFile().getName().endsWith("png.txt"));
+                                                            file1 = (HtmlGenerator.LogFile)var48.next();
+                                                        } while(file1.getType().equals(HtmlGenerator.LogFile.Type.PNG_EXCEPTION));
+                                                    } while(file1.getType().equals(HtmlGenerator.LogFile.Type.PNG_IMAGE));
+                                                } while(file1.getType().equals(HtmlGenerator.LogFile.Type.PNG_SUCCESS));
+                                            } while(file1.getFile().getName().contains("error"));
+                                        } while(file1.getFile().getName().endsWith("png.txt"));
 
                                         try {
-                                            FileReader fileReader = new FileReader(file.getFile());
+                                            FileReader fileReader = new FileReader(file1.getFile());
                                             BufferedReader bufferedReader = new BufferedReader(fileReader);
                                             stringBuffer = new StringBuffer();
                                             boolean startFound = false;
@@ -723,10 +724,10 @@ public class HtmlGenerator extends TestResultPruner {
                                         if (throwable != null) {
                                             line = result.getName();
                                             if (line != null && !line.isEmpty()) {
-                                                int index = line.indexOf(" on ");
-                                                line = index > 0 ? line.substring(0, index) : line;
-                                                index = line.indexOf(" ");
-                                                line = index > 0 ? line.substring(0, index) : line;
+                                                int index1 = line.indexOf(" on ");
+                                                line = index1 > 0 ? line.substring(0, index1) : line;
+                                                index1 = line.indexOf(" ");
+                                                line = index1 > 0 ? line.substring(0, index1) : line;
                                                 File f = file.getFile();
                                                 if (f != null && f.getName().contains(line) && f.getName().contains(throwable.getClass().getSimpleName())) {
                                                     file.setThrowable(throwable);
@@ -784,34 +785,30 @@ public class HtmlGenerator extends TestResultPruner {
                 outputJsonFile.mkdir();
             }
 
-            try {
-                Throwable var13 = null;
-                Object var14 = null;
+            Throwable var13 = null;
+			Object var14 = null;
 
-                try {
-                    FileWriter file = new FileWriter(outputJson + CommonConstants.DIR_SEPARATOR.getValue() + tcid + ".json");
+			try {
+			    FileWriter file = new FileWriter(outputJson + CommonConstants.DIR_SEPARATOR.getValue() + tcid + ".json");
 
-                    try {
-                        file.write(json.toString());
-                        file.flush();
-                    } finally {
-                        if (file != null) {
-                            file.close();
-                        }
+			    try {
+			        file.write(json.toString());
+			        file.flush();
+			    } finally {
+			        if (file != null) {
+			            file.close();
+			        }
 
-                    }
-                } catch (Throwable var26) {
-                    if (var13 == null) {
-                        var13 = var26;
-                    } else if (var13 != var26) {
-                        var13.addSuppressed(var26);
-                    }
+			    }
+			} catch (Throwable var26) {
+			    if (var13 == null) {
+			        var13 = var26;
+			    } else if (var13 != var26) {
+			        var13.addSuppressed(var26);
+			    }
 
-                    throw var13;
-                }
-            } catch (IOException var27) {
-                var27.printStackTrace();
-            }
+			    //throw var13;
+			}
 
         }
     }

@@ -1,15 +1,9 @@
 package com.pearson.test.qglobal;
 
-import com.pearson.api.restservices.QgApiRequestBuilder.QgApiRequestType;
-import com.pearson.api.restservices.assessments.Assessment;
-import com.pearson.api.restservices.assessments.AssessmentsFactory;
-import com.pearson.api.restservices.core.SessionData;
-import org.apache.http.HttpResponse;
-
 public class TestApi {
     public TestApi() {
     }
-
+/*
     public static void main(String[] args) throws Exception {
         SessionData sessionData = new SessionData();
         HttpResponse response = null;
@@ -20,5 +14,5 @@ public class TestApi {
         sessionData.setApiRequest(apiRequest);
         response = QgApiRequestType.GENERATE_REPORT.generateAndSendRequest(sessionData);
         sessionData.checkHttpResponse(response);
-    }
+    }*/
 }
